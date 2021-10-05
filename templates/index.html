@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>DevOps Exercise</title>
+        <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+    </head>
+    <body>
+        <h1>DevOps Exercise</h1>
+        <h6>Joshua Reddy</h6>
+        <p>Hello, {{ client_ip }}!</p>
+        <p>I'm {{ server_ip }}!</p>
+        <p>The current time is {{ current_time }} and my load averages are:</p>
+        <table>
+            <caption>
+                Load Averages
+            </caption>
+            <tr>
+                <td>
+                    1 Min Avg.
+                </td>
+                <td>
+                    {{ load1 }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    5 Min Avg.
+                </td>
+                <td>
+                    {{ load5 }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    15 Min Avg.
+                </td>
+                <td>
+                    {{ load15 }}
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
