@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 import socket
 from datetime import datetime
 import os
@@ -7,16 +7,17 @@ app = Flask(__name__)
 
 
 @app.route("/")
+@app.route("/index")
 def collect_info():
     client_host = socket.gethostname()
     client_ip = socket.gethostbyname(client_host)
+    server_ip = socket.gethostbyname("localhost")
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
     load1, load5, load15 = os.getloadavg()
-
-    return "Hello, " + client_ip + " " + socket.gethostbyname("localhost") + " " + current_time + " " + \
-           str(load1) + " " + str(load5) + " " + str(load15)
+    return render_template('index.html', client_ip=client_ip, current_time=current_time, server_ip=server_ip,
+                           load1=load1, load5=load5, load15=load15)
 
 
 if __name__ == "__main__":
-    app.run(host="localhost", port=8080)
+    app.run(host="0.0.0.0", port=8080)
