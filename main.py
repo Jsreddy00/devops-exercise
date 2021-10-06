@@ -2,6 +2,7 @@ from flask import Flask, render_template
 import socket
 from datetime import datetime
 import os
+import requests
 
 app = Flask(__name__)
 
@@ -9,9 +10,8 @@ app = Flask(__name__)
 @app.route("/")
 @app.route("/index")
 def collect_info():
-    client_host = socket.gethostname()
-    client_ip = socket.gethostbyname(client_host)
-    server_ip = socket.gethostbyname("localhost")
+    client_ip = requests.get('https://checkip.amazonaws.com').text.strip()
+    server_ip = socket.gethostbyname(socket.gethostname())
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
     load1, load5, load15 = os.getloadavg()
