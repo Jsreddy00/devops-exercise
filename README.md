@@ -18,7 +18,7 @@ uwsgi-nginx-flask python image was used as the base for the webapp as flask by i
 
 Once the docker image was built, I pushed the image to the AWS ECR in order to store the repository. This way if a code change is needed, I can push the new image to the repository easily.
 
-I decided to use Fargate to host the container as it's intended use case is best for small workloads such as this. Also eliminates the burden of maintaining a linux EC2 host.
+I decided to use Fargate to host the container as its intended use case is best for small workloads such as this. It also eliminates the burden of maintaining a linux EC2 host.
 
 
 If more containers are needed, a task can simply be created in the AWS Console or main.tf can be modified to create more infrastructure if needed.
